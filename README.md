@@ -4,13 +4,13 @@
 
 ## 安装
 
-将技能目录复制或链接到由 `CODEX_HOME` 指定的 Codex 技能目录：
+将以下地址和请求直接交给 Codex：
 
-```sh
-cp -R skills/ccswitch-remote-control "$CODEX_HOME/skills/"
+```text
+从 https://github.com/AndySu001/codex-skills/tree/ccswitch-remote-control 安装并启用 ccswitch-remote-control Skill。
 ```
 
-安装后新建一个 Codex 任务，并使用 `$ccswitch-remote-control` 调用该 Skill。
+Codex 会安装该 Skill；安装后即可在任务中使用 `$ccswitch-remote-control`。
 
 ## 许可证
 
