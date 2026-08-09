@@ -1,9 +1,9 @@
 ---
-name: codex-official-auth-remote-control
+name: ccswitch-remote-control
 description: Preserve an official ChatGPT/Codex login while using CC Switch to configure a third-party Codex provider, then enable and verify Codex Remote Control. Use when a user needs third-party model routing without losing official Codex identity, Remote Control, or official plugin access.
 ---
 
-# Codex Official Auth and Remote Control
+# CCSwitch Remote Control
 
 Configure CC Switch so Codex keeps its official ChatGPT login while model traffic uses a selected third-party provider. Then enable Codex Remote Control without exposing credentials.
 

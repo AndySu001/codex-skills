@@ -1,0 +1,4 @@
+interface:
+  display_name: "CCSwitch Remote Control"
+  short_description: "通过 CC Switch 保留官方登录并安全启用远程控制"
+  default_prompt: "Use $ccswitch-remote-control to preserve official Codex login while configuring a third-party provider and Remote Control."
