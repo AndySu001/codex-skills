@@ -9,8 +9,8 @@ Configure CC Switch so Codex keeps its official ChatGPT login while model traffi
 
 ## Safety Boundary
 
-- Never read, print, commit, copy, or ask the user to paste Codex's `auth.json`, CC Switch's database, cookies, access tokens, API keys, pairing codes, or full configuration files.
-- Never put a real credential in a command, a TOML example, a log, or a Git commit.
+- Never read, print, copy, or ask the user to paste Codex's `auth.json`, CC Switch's database, cookies, access tokens, API keys, pairing codes, or full configuration files.
+- Never put a real credential in a command, a TOML example, or a log.
 - Treat a CC Switch provider-management command as an internal desktop-app API, not a public HTTP API. Its local proxy health endpoint only reports proxy health; it cannot configure providers.
 - Do not edit `auth.json` by hand. Let Codex and CC Switch manage it.
 - Explain that CC Switch local routing may send prompts and tool data to the selected third-party provider. Confirm that this is acceptable before enabling it.
