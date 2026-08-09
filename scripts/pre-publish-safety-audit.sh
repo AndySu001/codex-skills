@@ -14,6 +14,9 @@ report() {
 pattern='-----BEGIN ([A-Z ]+)?PRIVATE KEY-----|\b(sk|rk|pk)-[A-Za-z0-9_-]{16,}|\bgh[pousr]_[A-Za-z0-9_]{16,}|\bAKIA[0-9A-Z]{16}\b|[Bb]earer[[:space:]]+[A-Za-z0-9._~+/-]{16,}|(api[_-]?key|access[_-]?token|refresh[_-]?token|password)[[:space:]]*[:=][[:space:]]*[^[:space:]"]{8,}|([Ss]et-[Cc]ookie|[Cc]ookie)[[:space:]]*[:=]|https?://(localhost|127\.0\.0\.1|10\.|192\.168\.|172\.(1[6-9]|2[0-9]|3[0-1])\.)|\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b|\+[0-9][0-9 ()-]{7,}[0-9]'
 
 while IFS= read -r -d '' file; do
+  # A staged deletion remains listed by Git but has no worktree content to scan.
+  [[ -f "$file" ]] || continue
+
   case "$file" in
     *.log|*.jsonl|*chat*history*|*conversation*|*transcript*)
       report "$file (log or conversation artifact)"
