@@ -4,19 +4,21 @@
 
 ## 技能分支
 
-| 分支 | 用途 | 教程 |
-| --- | --- | --- |
-| `ccswitch-remote-control` | 保留官方 Codex 登录，同时配置第三方模型与 Remote Control | [教程](docs/ccswitch-remote-control.md) |
+| Skill | 分支 | 用途 | 教程 |
+| --- | --- | --- | --- |
+| `ccswitch-remote-control` | `ccswitch-remote-control` | 保留官方 Codex 登录，同时配置第三方模型与 Remote Control | [教程](docs/ccswitch-remote-control.md) |
 
 ## 安装技能
 
-将以下地址和请求直接交给 Codex：
+### CCSwitch Remote Control
+
+将以下地址和请求直接交给 Codex，以安装这个 Skill：
 
 ```text
 从 https://github.com/AndySu001/codex-skills/tree/ccswitch-remote-control 安装并启用 ccswitch-remote-control Skill。
 ```
 
-Codex 会从对应分支安装 Skill；安装后即可在任务中使用 `$ccswitch-remote-control`。
+安装后即可在任务中使用 `$ccswitch-remote-control`。
 
 ## 许可证
 
