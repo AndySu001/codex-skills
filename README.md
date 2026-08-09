@@ -1,10 +1,10 @@
-# Codex Skills
+# Codex 实用技能
 
-This repository contains practical, reusable skills created for Codex and shared publicly.
+这里收录为 Codex 创建并公开分享的实用、可复用技能。
 
-Each skill lives in its own directory and starts with a `SKILL.md` file. A skill may include `scripts/`, `references/`, `templates/`, and examples when they are needed to make the workflow reliable.
+每个技能都位于独立目录中，并以 `SKILL.md` 作为入口说明。根据需要，技能还可以包含 `scripts/`、`references/`、`templates/` 和示例文件，确保使用流程清晰可靠。
 
-## Repository layout
+## 仓库结构
 
 ```text
 codex-skills/
@@ -15,21 +15,21 @@ codex-skills/
       references/
 ```
 
-## Add a skill
+## 添加技能
 
-1. Create a new directory under `skills/` using lowercase letters, numbers, and hyphens.
-2. Write the workflow in `SKILL.md`, including when it should be used and any requirements.
-3. Test it locally before committing.
-4. Ensure the contribution contains no API keys, tokens, personal data, or machine-specific paths.
+1. 在 `skills/` 下创建技能目录，目录名使用小写字母、数字和连字符。
+2. 在 `SKILL.md` 中写清用途、触发场景、操作流程和使用前提。
+3. 本地测试通过后再提交。
+4. 发布前确认不包含 API 密钥、令牌、个人资料或与本机绑定的路径。
 
-## Install a skill locally
+## 本地安装
 
-Copy or link the skill directory into your Codex skills directory, then start a new task so Codex can discover it.
+将技能目录复制或链接到 Codex 的技能目录，然后新建一个任务，让 Codex 识别该技能。
 
 ```sh
 cp -R skills/<skill-name> ~/.codex/skills/
 ```
 
-## License
+## 许可证
 
-MIT. See [LICENSE](LICENSE).
+本仓库采用 MIT 许可证，详见 [LICENSE](LICENSE)。
