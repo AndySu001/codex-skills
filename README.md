@@ -1,6 +1,6 @@
 # Codex 实用技能
 
-这是一个按分支管理的开源 Codex Skill 仓库。`main` 只保存仓库导航、教程与发布门禁；每个可安装 Skill 都位于自己的分支，便于独立发布、测试和维护。
+这是一个按分支管理的开源 Codex Skill 仓库。`main` 只保存仓库导航与教程；每个可安装 Skill 都位于自己的分支，便于独立维护。
 
 ## 技能分支
 
@@ -10,14 +10,13 @@
 
 ## 安装技能
 
-克隆所需 Skill 分支，再将该分支中的技能目录放入 `CODEX_HOME` 指定的技能目录：
+将以下地址和请求直接交给 Codex：
 
-```sh
-git clone --branch <skill-branch> --single-branch <repository-url>
-cp -R <repository>/skills/<skill-name> "$CODEX_HOME/skills/"
+```text
+从 https://github.com/AndySu001/codex-skills/tree/ccswitch-remote-control 安装并启用 ccswitch-remote-control Skill。
 ```
 
-安装后新建一个 Codex 任务即可使用该 Skill。
+Codex 会从对应分支安装 Skill；安装后即可在任务中使用 `$ccswitch-remote-control`。
 
 ## 许可证
 
