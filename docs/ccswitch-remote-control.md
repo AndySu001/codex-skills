@@ -1,4 +1,4 @@
-# 官方登录、第三方模型与 Remote Control
+# CCSwitch Remote Control 教程
 
 本教程说明如何让 Codex 保留官方 ChatGPT/Codex 登录，同时通过 CC Switch 选择第三方模型提供商，并按需开启 Remote Control。
 
