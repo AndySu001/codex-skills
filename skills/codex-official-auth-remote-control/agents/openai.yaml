@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex 官方登录与远程控制"
+  short_description: "保留官方登录并安全配置第三方模型与远程控制完整工作流"
+  default_prompt: "Use $codex-official-auth-remote-control to preserve official Codex login while configuring a third-party provider and Remote Control."
