@@ -41,6 +41,27 @@ codex remote-control --help
 
 启用官方登录保留后，Codex 继续显示官方账号是预期行为。不要根据账号显示判断模型流量；应查看 CC Switch 的当前提供商和已脱敏的请求统计。
 
+## 为 Remote Control 临时切换到官方
+
+配置 Remote Control 时，先让 Codex 作为官方客户端运行：
+
+1. 在 CC Switch 的 `Codex` 标签页选择并启用 `OpenAI Official`。
+2. 如果 Codex 已打开，在右下角的账号/提供商菜单选择 `OpenAI Official`；界面也可能显示为 `Official` 或 `ChatGPT`。如果右下角没有该项，以 CC Switch 的当前提供商为准并重启 Codex。
+3. 官方提供商不要启用本地路由接管；需要时运行 `codex login` 完成官方登录。
+4. 保持官方提供商选中，完成 Remote Control 配置和配对。
+5. 配对完成后，在 CC Switch 切回第三方提供商并重启 Codex。若还要保留官方身份、Remote Control 或官方插件，保持“切换第三方时保留官方登录”开启。
+
+右下角显示的是当前会话/提供商提示，不是计费归属证明。切回第三方后，以 CC Switch 的当前提供商和请求统计为准。
+
+## 切换是否显示官方登录
+
+在 CC Switch 打开 `Settings -> General -> Codex App Enhancements`，找到 `Keep official login when switching third-party providers`：
+
+- **开启：** Codex 继续显示官方登录，同时模型请求可以使用第三方提供商。需要 Remote Control 或官方插件时建议开启。
+- **关闭：** 切换第三方提供商时可能替换当前 Codex 凭据或配置，右下角可能不再显示官方账号，Remote Control 和官方插件也可能失效。
+
+想重新显示官方登录时：切换到 `OpenAI Official`，运行 `codex login`，重新打开上述开关，然后重启 Codex。不要手动编辑 `auth.json`。
+
 ## 开启 Remote Control
 
 确认官方登录已完成、Codex 已重启后，启动 Remote Control：
