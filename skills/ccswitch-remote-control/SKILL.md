@@ -47,6 +47,27 @@ Do not start a pairing session merely to inspect availability: pairing produces 
 
 The expected separation is: official login material remains managed by Codex, while provider settings are managed by CC Switch. Codex continuing to display the official account is expected; use CC Switch's active-provider view and non-sensitive request statistics to determine where model traffic goes.
 
+## Switch the Bottom-Right Provider to Official for Remote Control
+
+Use this temporary mode when Remote Control setup needs Codex to operate as the official client:
+
+1. In CC Switch's `Codex` tab, select `OpenAI Official` and make it current.
+2. If Codex is open, use the bottom-right account/provider menu to select `OpenAI Official` (the label may appear as `Official` or `ChatGPT`). If that entry is not visible, switch it in CC Switch and restart Codex.
+3. Keep local routing takeover disabled for the official provider. Complete `codex login` if the official account is not already signed in.
+4. Configure and pair Remote Control while the official provider is selected.
+5. After pairing, switch back to the intended third-party provider in CC Switch and restart Codex. Keep `Keep official login when switching third-party providers` enabled if the official identity and Remote Control must remain available.
+
+The bottom-right label is a session/provider indicator, not proof of where every request is billed. Confirm the active provider in CC Switch after switching back.
+
+### Choose Whether the Official Login Is Shown
+
+Use CC Switch `Settings -> General -> Codex App Enhancements -> Keep official login when switching third-party providers`:
+
+- **On (show/preserve official login):** keep the official login in Codex while using a third-party provider for model traffic. This is the recommended setting when Remote Control or official plugins are needed.
+- **Off (do not preserve official login):** switching to a third-party provider may replace the active Codex credential/configuration. The official account may disappear from the bottom-right menu, and Remote Control or official plugins may stop working.
+
+To show it again, select `OpenAI Official`, complete `codex login`, turn the setting back on, and restart Codex. Do not edit `auth.json` manually.
+
 ## Enable Remote Control
 
 After the official login is preserved and Codex has restarted, use the installed Codex CLI:
