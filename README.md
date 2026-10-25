@@ -6,7 +6,7 @@
 
 | Skill | 分支 | 用途 | 教程 |
 | --- | --- | --- | --- |
-| `ccswitch-remote-control` | `ccswitch-remote-control` | 保留官方 Codex 登录，同时配置第三方模型与 Remote Control | [教程](docs/ccswitch-remote-control.md) |
+| `ccswitch-remote-control` | `ccswitch-remote-control` | 先登录桌面 App，再配置 CC Switch；分别验证 Mac/Windows 的官方身份、第三方流量与手机远程连接 | [教程](docs/ccswitch-remote-control.md) |
 
 ## 安装技能
 
