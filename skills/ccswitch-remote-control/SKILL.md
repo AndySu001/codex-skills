@@ -1,109 +1,43 @@
 ---
 name: ccswitch-remote-control
-description: Preserve an official ChatGPT/Codex login while using CC Switch to configure a third-party Codex provider, then enable and verify Codex Remote Control. Use when a user needs third-party model routing without losing official Codex identity, Remote Control, or official plugin access.
+description: Configure CC Switch with a desktop App ChatGPT login and a third-party model provider, and verify mobile remote access on macOS or Windows. Use for desktop official-login preservation, provider routing, and remote-connection troubleshooting.
 ---
 
-# CCSwitch Remote Control
+# CC Switch Desktop Remote Control
 
-Configure CC Switch so Codex keeps its official ChatGPT login while model traffic uses a selected third-party provider. Then enable Codex Remote Control without exposing credentials.
+Keep the user's desktop App workflow primary. Read [desktop workflow and evidence](references/desktop-workflow.md) for setup, platform observations, version-specific behavior, and the separate CLI appendix.
 
-## Safety Boundary
+## Workflow
 
-- Never read, print, copy, or ask the user to paste Codex's `auth.json`, CC Switch's database, cookies, access tokens, API keys, pairing codes, or full configuration files.
-- Never put a real credential in a command, a TOML example, or a log.
-- Treat a CC Switch provider-management command as an internal desktop-app API, not a public HTTP API. Its local proxy health endpoint only reports proxy health; it cannot configure providers.
-- Do not edit `auth.json` by hand. Let Codex and CC Switch manage it.
-- Explain that CC Switch local routing may send prompts and tool data to the selected third-party provider. Confirm that this is acceptable before enabling it.
+1. Complete official ChatGPT login in the official desktop App and confirm account/workspace. A CLI authorization connection in CC Switch is not a substitute.
+2. If an existing route prevents official login, first disable Codex takeover and confirm restoration, then select OpenAI Official and restart the desktop App. Do not route official login through a third-party takeover.
+3. Enable CC Switch Settings > General > Codex App Enhancements > 非接管切换时保留官方登录. Check the installed version's labels.
+4. Select the third-party provider. Use native Responses directly where supported; enable local routing and Codex takeover for a configuration requiring Chat Completions conversion. A global proxy setting does not prove Codex takeover.
+5. Restart the desktop App. Validate official identity, actual provider traffic, and remote access separately.
+6. Use desktop Settings > Connections > Control this Mac or PC > Set up / Add and the phone QR flow. Account/workspace must match; organization permissions and rollout may affect availability.
 
-## Prerequisites
+Keep credential entry in the appropriate UI. Never read or copy authentication files, CC Switch databases, tokens, cookies, pairing codes, or complete secret-bearing configuration. Inspect only necessary non-secret configuration fields or credential presence. Do not expose pairing output in chat or repository files.
 
-Check these non-sensitive facts first:
+## Evidence Rules
 
-```sh
-codex --version
-codex login status
-codex remote-control --help
-```
+- Desktop identity comes from the desktop account/workspace UI or a minimal authentication status summary. CLI Not logged in or a missing default auth.json cannot establish desktop logout or failed persistence.
+- Provider selection and configuration show intent. Verify actual traffic using a harmless request and correlated provider usage/billing; use CC Switch statistics when routing applies.
+- Local proxy health proves only that the proxy is running.
+- Verify remote operations individually: reading chats, starting tasks, approvals, and Computer Use are separate outcomes. Verify persistence after a restart separately.
+- Treat requires_openai_auth=true as version- and credential-dependent. Do not force it universally or treat it as sufficient proof of a remote fix. CC Switch can overwrite it on another switch.
+- For v3.20.1+ distinguish third-party keys in provider configuration from official-login preservation. The non-takeover preservation toggle does not merely hide/show the account; takeover has separate preservation behavior. Consult the pinned v4.0.20 source links in the reference for exceptions.
 
-Require all of the following:
+## Platform Evidence, 2026-10-25
 
-- CC Switch 3.16.1 or later, with its Codex integration available.
-- A working Codex CLI or desktop app.
-- A ChatGPT/Codex account that can complete official login.
-- A third-party provider and API key only when model traffic will be routed away from OpenAI.
+- MacBook Air M1: device model confirmed; prior repository notes describe offline troubleshooting. Those notes do not establish a complete remote acceptance test; do not invent a Mac success scope.
+- Windows ASUS Tianxuan Air: the user confirmed a phone connection and viewing chat history. Desktop official authentication and third-party configuration were also confirmed earlier. Phone task creation, approvals, Computer Use, third-party billing, and durable login after restart remain unverified.
+- The Windows user requested setting the custom provider's requires_openai_auth to true after a local backup. Later phone success has no isolated causal attribution to this change.
+- Statsig bootstrap timeout, durable WebSocket failures, and curl 403/timeout were observations during troubleshooting, not confirmed causes. Curl 403 alone cannot establish App/browser failure.
 
-Do not start a pairing session merely to inspect availability: pairing produces a short-lived secret code. Ask the user before starting or pairing a remote-control daemon if it is not already their intended action.
+## CLI Boundary
 
-## Configure Official Login Preservation
+Do not introduce codex login, npx, independent CLI installation, or CLI pairing as desktop setup prerequisites. CLI status pertains to its own environment. Only use the reference's CLI appendix when the user explicitly requests a CLI investigation.
 
-1. In CC Switch, open the `Codex` tab and select `OpenAI Official` as the current provider.
-2. Run `codex login` and let the user complete the official login in the browser. Verify only with `codex login status`.
-3. In CC Switch, open `Settings -> General -> Codex App Enhancements` and enable `Keep official login when switching third-party providers`.
-4. Add or select the desired third-party Codex provider in the `Codex` tab. Enter its API key only in CC Switch's provider form; never handle it in chat or a shell command.
-5. Choose routing based on the provider protocol:
-   - Use its native Responses API directly when supported.
-   - For a Chat Completions-only provider, open `Settings -> Routing -> Local Routing`, start routing, and enable Codex takeover.
-6. Restart Codex after a provider or model-catalog change.
+On the recorded Windows desktop-bundled codex-cli 0.164.0-alpha.11.1, help existed but remote-control start --json failed because the complete local CLI package was absent. This is not evidence that Windows remote access is unsupported.
 
-The expected separation is: official login material remains managed by Codex, while provider settings are managed by CC Switch. Codex continuing to display the official account is expected; use CC Switch's active-provider view and non-sensitive request statistics to determine where model traffic goes.
-
-## Switch the Bottom-Right Provider to Official for Remote Control
-
-Use this temporary mode when Remote Control setup needs Codex to operate as the official client:
-
-1. In CC Switch's `Codex` tab, select `OpenAI Official` and make it current.
-2. If Codex is open, use the bottom-right account/provider menu to select `OpenAI Official` (the label may appear as `Official` or `ChatGPT`). If that entry is not visible, switch it in CC Switch and restart Codex.
-3. Keep local routing takeover disabled for the official provider. Complete `codex login` if the official account is not already signed in.
-4. Configure and pair Remote Control while the official provider is selected.
-5. After pairing, switch back to the intended third-party provider in CC Switch and restart Codex. Keep `Keep official login when switching third-party providers` enabled if the official identity and Remote Control must remain available.
-
-The bottom-right label is a session/provider indicator, not proof of where every request is billed. Confirm the active provider in CC Switch after switching back.
-
-### Choose Whether the Official Login Is Shown
-
-Use CC Switch `Settings -> General -> Codex App Enhancements -> Keep official login when switching third-party providers`:
-
-- **On (show/preserve official login):** keep the official login in Codex while using a third-party provider for model traffic. This is the recommended setting when Remote Control or official plugins are needed.
-- **Off (do not preserve official login):** switching to a third-party provider may replace the active Codex credential/configuration. The official account may disappear from the bottom-right menu, and Remote Control or official plugins may stop working.
-
-To show it again, select `OpenAI Official`, complete `codex login`, turn the setting back on, and restart Codex. Do not edit `auth.json` manually.
-
-## Enable Remote Control
-
-After the official login is preserved and Codex has restarted, use the installed Codex CLI:
-
-```sh
-codex remote-control start --json
-```
-
-Only when the user is ready to pair an authorized remote client, run:
-
-```sh
-codex remote-control pair
-```
-
-Keep the returned pairing code private and enter it only into the authorized client. Do not paste the code into chat, issue trackers, shell history captures, or repository files. Stop the daemon when it is no longer needed:
-
-```sh
-codex remote-control stop
-```
-
-## Verify Without Secrets
-
-Use this order:
-
-1. Confirm `codex login status` reports the official login.
-2. Confirm CC Switch shows the intended Codex provider and, when applicable, that Codex local routing is enabled.
-3. Restart Codex and make a harmless test request.
-4. Confirm the selected provider's non-sensitive request count or CC Switch's redacted request view changes as expected.
-5. Start Remote Control and pair only with an authorized device. Confirm the remote client can connect and that no pairing code was recorded.
-
-Do not treat a successful local-proxy health check as evidence that provider switching or Remote Control works. It proves only that CC Switch's local proxy is alive.
-
-## Troubleshoot
-
-- If Codex shows the official account after switching providers, treat that as expected when login preservation is enabled.
-- If third-party traffic fails, verify the provider protocol and enable local routing only when conversion is required; then restart Codex.
-- If official features disappear, select `OpenAI Official`, complete official login again, re-enable login preservation, and switch back to the third-party provider.
-- If Remote Control fails, check `codex remote-control --help`, confirm official login status, and use a fresh pairing code. Do not disclose the error output if it contains a code or credential.
-- If the user only wants the official provider, keep `OpenAI Official` selected and do not enable third-party routing or takeover.
+When reconnecting, inspect the desktop connection UI and host/network state first. Do not automatically reset credentials or re-pair; verify any recovery instead of assuming that restarting or logging in fixes it.

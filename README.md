@@ -1,6 +1,8 @@
 # CCSwitch Remote Control
 
-此分支包含 `ccswitch-remote-control` Skill。它用于在保留官方 Codex 登录的同时，通过 CC Switch 配置第三方模型，并安全启用 Remote Control。
+此分支包含 `ccswitch-remote-control` Skill。先在官方桌面 App 登录 ChatGPT，再通过 CC Switch 配置第三方模型，分别验证官方身份、模型流量和手机远程连接。支持 macOS 与 Windows 的桌面流程，CLI 实验独立列入附录。
+
+参阅[完整教程与设备验证范围](skills/ccswitch-remote-control/references/desktop-workflow.md)。Windows 天选 Air 已由用户确认手机连接并查看聊天记录；其他操作不据此视为通过。MacBook Air M1 的范围按已有记录标注。
 
 ## 安装
 
